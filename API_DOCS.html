@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Tournament Platform API - Complete Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#9333ea',
+                        secondary: '#a855f7',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        code {
+            background-color: rgba(147, 51, 234, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+        pre {
+            background-color: #1e1b24;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid rgba(147, 51, 234, 0.3);
+        }
+        pre code {
+            background: none;
+            padding: 0;
+            color: #e2e8f0;
+        }
+        .endpoint-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-get { background: #10b981; color: white; }
+        .badge-post { background: #3b82f6; color: white; }
+        .badge-put { background: #f59e0b; color: white; }
+        .badge-delete { background: #ef4444; color: white; }
+        .badge-ws { background: #8b5cf6; color: white; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 via-white to-purple-50 min-h-screen">
+    
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white shadow-2xl sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-6">
+            <h1 class="text-4xl font-bold mb-2">🎮 Gaming Tournament Platform API</h1>
+            <p class="text-purple-100 text-lg">Complete Documentation - Flutter & Admin Panel Integration</p>
+        </div>
+    </header>
+
+    <!-- Quick Navigation -->
+    <nav class="bg-white border-b-2 border-purple-200 sticky top-[94px] z-40 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap gap-4">
+            <a href="#overview" class="px-4 py-2 rounded-lg hover:bg-purple-100 text-purple-700 font-semibold transition">Overview</a>
+            <a href="#flutter" class="px-4 py-2 rounded-lg hover:bg-purple-100 text-purple-700 font-semibold transition">Flutter Setup</a>
+            <a href="#auth" class="px-4 py-2 rounded-lg hover:bg-purple-100 text-purple-700 font-semibold transition">Authentication</a>
+            <a href="#admin" class="px-4 py-2 rounded-lg hover:bg-purple-100 text-purple-700 font-semibold transition">Admin Panel</a>
+            <a href="#endpoints" class="px-4 py-2 rounded-lg hover:bg-purple-100 text-purple-700 font-semibold transition">All Endpoints</a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-6 py-12 max-w-6xl">
+        
+        <!-- Overview -->
+        <section id="overview" class="bg-white rounded-2xl shadow-xl p-8 mb-12 border border-purple-200">
+            <h2 class="text-3xl font-bold text-purple-900 mb-6 flex items-center">
+                <span class="mr-3">📊</span> Overview
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-purple-900 mb-2">115 Endpoints</h3>
+                    <p class="text-purple-700">Complete REST API with WebSocket support</p>
+                </div>
+                <div class="bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">Node.js + Supabase</h3>
+                    <p class="text-blue-700">Production-ready backend stack</p>
+                </div>
+                <div class="bg-gradient-to-br from-green-100 to-green-200 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-green-900 mb-2">Secure</h3>
+                    <p class="text-green-700">JWT authentication & encryption</p>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-purple-50 border-l-4 border-purple-600 p-6 rounded-r-xl">
+                <h3 class="text-xl font-bold text-purple-900 mb-4">Base URL</h3>
+                <code class="text-lg">http://localhost:3000</code>
+                <p class="text-purple-700 mt-2">Update this to your production URL</p>
+            </div>
+        </section>
+
+        <!-- Flutter Setup -->
+        <section id="flutter" class="bg-white rounded-2xl shadow-xl p-8 mb-12 border border-purple-200">
+            <h2 class="text-3xl font-bold text-purple-900 mb-6 flex items-center">
+                <span class="mr-3">📱</span> Flutter Integration Guide
+            </h2>
+
+            <!-- Platform Options -->
+            <div class="grid md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-purple-100 rounded-xl p-6 border-2 border-purple-500">
+                    <h3 class="text-xl font-bold text-purple-900 mb-2">FlutterFlow</h3>
+                    <p class="text-sm text-purple-700 mb-4">Visual builder</p>
+                    <a href="#flutterflow" class="text-purple-600 font-semibold">→ Guide</a>
+                </div>
+                <div class="bg-blue-100 rounded-xl p-6 border-2 border-blue-500">
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">Android Studio</h3>
+                    <p class="text-sm text-blue-700 mb-4">Native dev</p>
+                    <a href="#android" class="text-blue-600 font-semibold">→ Guide</a>
+                </div>
+                <div class="bg-green-100 rounded-xl p-6 border-2 border-green-500">
+                    <h3 class="text-xl font-bold text-green-900 mb-2">Flutter CLI</h3>
+                    <p class="text-sm text-green-700 mb-4">Standard setup</p>
+                    <a href="#flutter-cli" class="text-green-600 font-semibold">→ Guide</a>
+                </div>
+            </div>
+
+            <!-- FlutterFlow Integration -->
+            <div id="flutterflow" class="mb-8 border-b border-purple-200 pb-8">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">🎨 FlutterFlow Integration</h3>
+                <p class="text-gray-700 mb-4">Use this API in FlutterFlow visual builder:</p>
+                
+                <div class="mb-4">
+                    <h4 class="font-bold text-purple-900 mb-2">Step 1: Add Custom Action</h4>
+                    <p class="text-sm text-gray-600 mb-2">1. Go to Actions → Custom Actions</p>
+                    <p class="text-sm text-gray-600 mb-2">2. Click "Create Custom Action"</p>
+                    <p class="text-sm text-gray-600 mb-4">3. Name it "InitializeApp"</p>
+                </div>
+                
+                <div class="mb-4">
+                    <h4 class="font-bold text-purple-900 mb-2">Step 2: API Call Configuration</h4>
+                    <pre><code>Action Type: API Call
+Method: POST
+URL: http://localhost:3000/auth/init
+Body: {} (empty JSON)
+
+Store Response In:
+  Variable: AppState.initToken
+  Path: data.init_token</code></pre>
+                </div>
+                
+                <div class="mb-4">
+                    <h4 class="font-bold text-purple-900 mb-2">Step 3: Trigger on App Start</h4>
+                    <p class="text-sm text-gray-600 mb-2">1. Go to App Settings → App Start Actions</p>
+                    <p class="text-sm text-gray-600 mb-4">2. Add "InitializeApp" action</p>
+                </div>
+                
+                <div class="mb-4">
+                    <h4 class="font-bold text-purple-900 mb-2">Step 4: Use in Login Page</h4>
+                    <pre><code>Action Type: API Call
+Method: POST
+URL: http://localhost:3000/auth/login
+Headers:
+  Content-Type: application/json
+
+Body:
+{
+  "email_or_phone": {{ LoginEmailTextField.value }},
+  "password": {{ LoginPasswordTextField.value }},
+  "init_token": {{ AppState.initToken }}
+}
+
+Store Response In:
+  Variable: AppState.authToken
+  Path: data.token</code></pre>
+                </div>
+                
+                <div class="mb-4">
+                    <h4 class="font-bold text-purple-900 mb-2">Step 5: Store Token</h4>
+                    <pre><code>Action: Set App State
+Variable: AppState.isLoggedIn
+Value: true
+
+Variable: AppState.authToken
+Value: {{ response.data.token }}</code></pre>
+                </div>
+                
+                <div class="bg-purple-50 border-l-4 border-purple-600 p-4 rounded-r-lg">
+                    <strong>💡 Tip:</strong> Create reusable actions for each API endpoint. Test with Postman first!
+                </div>
+            </div>
+
+            <!-- Android Studio / Native -->
+            <div id="android" class="mb-8 border-b border-purple-200 pb-8">
+                <h3 class="text-2xl font-bold text-blue-800 mb-4">🤖 Android Studio / Kotlin</h3>
+                <p class="text-gray-700 mb-4">Native Android integration:</p>
+                
+                <div class="mb-4">
+                    <h4 class="font-bold text-blue-900 mb-2">Step 1: Add Dependencies (build.gradle)</h4>
+                    <pre><code>dependencies {
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.11.0'
+    
+    // SharedPreferences for token storage
+    implementation 'androidx.preference:preference:1.2.0'
+}</code></pre>
+                </div>
+                
+                <div class="mb-4">
+                    <h4 class="font-bold text-blue-900 mb-2">Step 2: Create API Service (Kotlin)</h4>
+                    <pre><code>import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.*
+
+// API Interface
+interface GamingApiService {
+    @POST("auth/init")
+    suspend fun initializeApp(): Response<InitResponse>
+    
+    @POST("auth/login")
+    suspend fun login(@Body request: LoginRequest): Response<LoginResponse>
+    
+    @POST("auth/register")
+    suspend fun register(@Body request: RegisterRequest): Response<RegisterResponse>
+    
+    @GET("tournaments")
+    suspend fun getTournaments(): Response<TournamentsResponse>
+}
+
+// Data Classes
+data class InitRequest(val empty: String = "")
+data class InitResponse(
+    val success: Boolean,
+    val data: InitData
+)
+data class InitData(
+    val init_token: String,
+    val expires_in: Int,
+    val message: String
+)
+
+data class LoginRequest(
+    val email_or_phone: String,
+    val password: String,
+    val init_token: String
+)
+
+data class RegisterRequest(
+    val email: String,
+    val phone_number: String,
+    val full_name: String,
+    val in_game_name: String,
+    val primary_game: String,
+    val password: String,
+    val referral_code: String? = null,
+    val init_token: String
+)
+
+// Retrofit Instance
+object ApiClient {
+    private const val BASE_URL = "http://localhost:3000/"
+    
+    val apiService: GamingApiService = Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+        .create(GamingApiService::class.java)
+}
+
+// Usage in Activity
+class SplashActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initializeApp()
+    }
+    
+    private suspend fun initializeApp() {
+        try {
+            val response = ApiClient.apiService.initializeApp()
+            if (response.isSuccessful) {
+                val initToken = response.body()?.data?.init_token
+                // Save to SharedPreferences
+                saveInitToken(initToken ?: "")
+                
+                // Navigate to login
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
+        } catch (e: Exception) {
+            Log.e("Splash", "Init failed", e)
+        }
+    }
+    
+    private fun saveInitToken(token: String) {
+        val prefs = getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        prefs.edit().putString("init_token", token).apply()
+    }
+}
+
+class LoginActivity : AppCompatActivity() {
+    private fun performLogin(email: String, password: String) {
+        lifecycleScope.launch {
+            try {
+                val initToken = getInitToken()
+                val response = ApiClient.apiService.login(
+                    LoginRequest(email, password, initToken)
+                )
+                
+                if (response.isSuccessful) {
+                    val token = response.body()?.data?.token
+                    saveAuthToken(token ?: "")
+                    // Navigate to home
+                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                }
+            } catch (e: Exception) {
+                // Show error
+            }
+        }
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- Flutter CLI -->
+            <div id="flutter-cli" class="mb-8">
+                <h3 class="text-2xl font-bold text-green-800 mb-4">💻 Flutter CLI / Android Studio</h3>
+            </div>
+
+            <!-- Step 1: Add Dependencies -->
+            <div class="mb-8 border-b border-purple-200 pb-8">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">Step 1: Add Dependencies</h3>
+                <p class="text-gray-700 mb-4">Add these to your <code>pubspec.yaml</code>:</p>
+                <pre><code>dependencies:
+  flutter:
+    sdk: flutter
+  
+  # HTTP Client
+  http: ^1.1.0
+  
+  # Local Storage
+  shared_preferences: ^2.2.0
+  
+  # Device Info
+  device_info_plus: ^9.0.0
+  
+  # Crypto
+  crypto: ^3.0.0
+  
+  # JSON
+  dart_json_mapper: ^2.2.0</code></pre>
+            </div>
+
+            <!-- Step 2: Create API Service -->
+            <div class="mb-8 border-b border-purple-200 pb-8">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">Step 2: Create API Service Class</h3>
+                <p class="text-gray-700 mb-4">Create <code>lib/services/api_service.dart</code>:</p>
+                <pre><code>import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:crypto/crypto.dart';
+
+class ApiService {
+  static const String baseUrl = 'http://localhost:3000';
+  
+  // Get stored auth token
+  Future<String?> _getAuthToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('auth_token');
+  }
+  
+  // Save auth token
+  Future<void> _saveAuthToken(String token) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('auth_token', token);
+  }
+  
+  // Remove auth token (logout)
+  Future<void> _removeAuthToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('auth_token');
+  }
+  
+  // Get stored init token
+  Future<String?> _getInitToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString('init_token');
+  }
+  
+  // Save init token
+  Future<void> _saveInitToken(String token) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('init_token', token);
+  }
+  
+  // Remove init token
+  Future<void> _removeInitToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('init_token');
+  }
+  
+  // Get device fingerprint for security
+  Future<String> _getDeviceFingerprint() async {
+    final deviceInfo = DeviceInfoPlugin();
+    String fingerprint = '';
+    
+    if (Platform.isAndroid) {
+      final androidInfo = await deviceInfo.androidInfo;
+      fingerprint = '${androidInfo.id}_${androidInfo.model}_${androidInfo.manufacturer}';
+    } else if (Platform.isIOS) {
+      final iosInfo = await deviceInfo.iosInfo;
+      fingerprint = '${iosInfo.identifierForVendor}_${iosInfo.model}';
+    }
+    
+    // Hash the fingerprint for security
+    return sha256.convert(utf8.encode(fingerprint)).toString();
+  }
+  
+  // Helper method to make authenticated requests
+  Future<Map<String, dynamic>> _makeRequest(
+    String method,
+    String endpoint,
+    {Map<String, dynamic>? body, bool requireAuth = false}
+  ) async {
+    final token = await _getAuthToken();
+    final deviceFingerprint = await _getDeviceFingerprint();
+    
+    final headers = {
+      'Content-Type': 'application/json',
+      'X-Device-Fingerprint': deviceFingerprint,
+    };
+    
+    if (requireAuth && token != null) {
+      headers['Authorization'] = 'Bearer $token';
+    }
+    
+    final url = Uri.parse('$baseUrl$endpoint');
+    
+    http.Response response;
+    
+    switch (method.toUpperCase()) {
+      case 'GET':
+        response = await http.get(url, headers: headers);
+        break;
+      case 'POST':
+        response = await http.post(url, headers: headers, body: body != null ? jsonEncode(body) : null);
+        break;
+      case 'PUT':
+        response = await http.put(url, headers: headers, body: body != null ? jsonEncode(body) : null);
+        break;
+      case 'DELETE':
+        response = await http.delete(url, headers: headers);
+        break;
+      default:
+        throw Exception('Invalid HTTP method');
+    }
+    
+    final responseData = jsonDecode(response.body) as Map<String, dynamic>;
+    
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      return responseData;
+    } else {
+      throw Exception(responseData['error']?['message'] ?? 'Request failed');
+    }
+  }
+  
+  // APP INITIALIZATION (Call this on splash screen!)
+  Future<Map<String, dynamic>> initializeApp() async {
+    final response = await _makeRequest(
+      'POST',
+      '/auth/init',
+      body: {},
+    );
+    
+    // Save init token automatically
+    if (response['data']?['init_token'] != null) {
+      await _saveInitToken(response['data']['init_token']);
+    }
+    
+    return response;
+  }
+  
+  // USER REGISTRATION (requires init_token from initializeApp)
+  Future<Map<String, dynamic>> register({
+    required String email,
+    required String phoneNumber,
+    required String fullName,
+    required String inGameName,
+    required String primaryGame,
+    required String password,
+    String? referralCode,
+  }) async {
+    final initToken = await _getInitToken();
+    
+    if (initToken == null) {
+      throw Exception('App not initialized. Call initializeApp() first on splash screen.');
+    }
+    
+    final response = await _makeRequest(
+      'POST',
+      '/auth/register',
+      body: {
+        'email': email,
+        'phone_number': phoneNumber,
+        'full_name': fullName,
+        'in_game_name': inGameName,
+        'primary_game': primaryGame,
+        'password': password,
+        if (referralCode != null) 'referral_code': referralCode,
+        'init_token': initToken,
+      },
+    );
+    
+    // Save auth token automatically
+    if (response['data']?['token'] != null) {
+      await _saveAuthToken(response['data']['token']);
+    }
+    
+    // Remove init token after successful registration (single use)
+    await _removeInitToken();
+    
+    return response;
+  }
+  
+  // USER LOGIN (requires init_token from initializeApp)
+  Future<Map<String, dynamic>> login({
+    required String emailOrPhone,
+    required String password,
+  }) async {
+    final initToken = await _getInitToken();
+    
+    if (initToken == null) {
+      throw Exception('App not initialized. Call initializeApp() first on splash screen.');
+    }
+    
+    final response = await _makeRequest(
+      'POST',
+      '/auth/login',
+      body: {
+        'email_or_phone': emailOrPhone,
+        'password': password,
+        'init_token': initToken,
+      },
+    );
+    
+    // Save auth token automatically
+    if (response['data']?['token'] != null) {
+      await _saveAuthToken(response['data']['token']);
+    }
+    
+    // Remove init token after successful login (single use)
+    await _removeInitToken();
+    
+    return response;
+  }
+  
+  // USER LOGOUT
+  Future<void> logout() async {
+    await _makeRequest('POST', '/auth/logout', requireAuth: true);
+    await _removeAuthToken();
+  }
+  
+  // GET USER PROFILE (AUTHENTICATED)
+  Future<Map<String, dynamic>> getUserProfile() async {
+    return await _makeRequest('GET', '/users/me', requireAuth: true);
+  }
+  
+  // UPDATE USER PROFILE (AUTHENTICATED)
+  Future<Map<String, dynamic>> updateUserProfile({
+    String? fullName,
+    String? inGameName,
+    String? primaryGame,
+    String? profilePicture,
+    String? phoneNumber,
+  }) async {
+    return await _makeRequest(
+      'PUT',
+      '/users/me',
+      body: {
+        if (fullName != null) 'full_name': fullName,
+        if (inGameName != null) 'in_game_name': inGameName,
+        if (primaryGame != null) 'primary_game': primaryGame,
+        if (profilePicture != null) 'profile_picture': profilePicture,
+        if (phoneNumber != null) 'phone_number': phoneNumber,
+      },
+      requireAuth: true,
+    );
+  }
+  
+  // GET ALL TOURNAMENTS
+  Future<Map<String, dynamic>> getTournaments({
+    String? game,
+    String? entryFee,
+    String? type,
+    String? status,
+    int? page,
+    int? limit,
+    String? sortBy,
+  }) async {
+    final queryParams = <String, dynamic>{
+      if (game != null) 'game': game,
+      if (entryFee != null) 'entry_fee': entryFee,
+      if (type != null) 'type': type,
+      if (status != null) 'status': status,
+      if (page != null) 'page': page,
+      if (limit != null) 'limit': limit,
+      if (sortBy != null) 'sort_by': sortBy,
+    };
+    
+    final queryString = Uri(queryParameters: queryParams).query;
+    final endpoint = queryString.isNotEmpty ? '/tournaments?$queryString' : '/tournaments';
+    
+    return await _makeRequest('GET', endpoint);
+  }
+  
+  // GET TOURNAMENT DETAILS
+  Future<Map<String, dynamic>> getTournamentDetails(String tournamentId) async {
+    return await _makeRequest('GET', '/tournaments/$tournamentId');
+  }
+  
+  // REGISTER FOR TOURNAMENT (AUTHENTICATED)
+  Future<Map<String, dynamic>> registerForTournament(
+    String tournamentId, {
+    required String entryFeePaymentMethod,
+  }) async {
+    return await _makeRequest(
+      'POST',
+      '/tournaments/$tournamentId/register',
+      body: {
+        'entry_fee_payment_method': entryFeePaymentMethod,
+      },
+      requireAuth: true,
+    );
+  }
+  
+  // GET WALLET BALANCE (AUTHENTICATED)
+  Future<Map<String, dynamic>> getWalletBalance() async {
+    return await _makeRequest('GET', '/wallet/balance', requireAuth: true);
+  }
+  
+  // GET TRANSACTION HISTORY (AUTHENTICATED)
+  Future<Map<String, dynamic>> getTransactionHistory({
+    String? type,
+    String? status,
+    int? page,
+    int? limit,
+  }) async {
+    final queryParams = <String, dynamic>{
+      if (type != null) 'type': type,
+      if (status != null) 'status': status,
+      if (page != null) 'page': page,
+      if (limit != null) 'limit': limit,
+    };
+    
+    final queryString = Uri(queryParameters: queryParams).query;
+    final endpoint = queryString.isNotEmpty ? '/wallet/transactions?$queryString' : '/wallet/transactions';
+    
+    return await _makeRequest('GET', endpoint, requireAuth: true);
+  }
+  
+  // GET REWARDS STORE
+  Future<Map<String, dynamic>> getRewardsStore({
+    String? category,
+    int? page,
+    int? limit,
+  }) async {
+    final queryParams = <String, dynamic>{
+      if (category != null) 'category': category,
+      if (page != null) 'page': page,
+      if (limit != null) 'limit': limit,
+    };
+    
+    final queryString = Uri(queryParameters: queryParams).query;
+    final endpoint = queryString.isNotEmpty ? '/rewards/store?$queryString' : '/rewards/store';
+    
+    return await _makeRequest('GET', endpoint);
+  }
+  
+  // REDEEM REWARD (AUTHENTICATED)
+  Future<Map<String, dynamic>> redeemReward(
+    String rewardId, {
+    required Map<String, dynamic> deliveryDetails,
+  }) async {
+    return await _makeRequest(
+      'POST',
+      '/rewards/$rewardId/redeem',
+      body: {
+        'delivery_details': deliveryDetails,
+      },
+      requireAuth: true,
+    );
+  }
+  
+  // GET NOTIFICATIONS (AUTHENTICATED)
+  Future<Map<String, dynamic>> getNotifications({
+    bool? isRead,
+    int? page,
+    int? limit,
+  }) async {
+    final queryParams = <String, dynamic>{
+      if (isRead != null) 'is_read': isRead.toString(),
+      if (page != null) 'page': page,
+      if (limit != null) 'limit': limit,
+    };
+    
+    final queryString = Uri(queryParameters: queryParams).query;
+    final endpoint = queryString.isNotEmpty ? '/users/me/notifications?$queryString' : '/users/me/notifications';
+    
+    return await _makeRequest('GET', endpoint, requireAuth: true);
+  }
+  
+  // MARK NOTIFICATION AS READ (AUTHENTICATED)
+  Future<Map<String, dynamic>> markNotificationAsRead(String notificationId) async {
+    return await _makeRequest(
+      'PUT',
+      '/users/me/notifications/$notificationId/read',
+      requireAuth: true,
+    );
+  }
+  
+  // CREATE TEAM (AUTHENTICATED)
+  Future<Map<String, dynamic>> createTeam({
+    required String name,
+    required String tag,
+    required List<String> playerIds,
+    String? logo,
+  }) async {
+    return await _makeRequest(
+      'POST',
+      '/teams',
+      body: {
+        'name': name,
+        'tag': tag,
+        'player_ids': playerIds,
+        if (logo != null) 'logo': logo,
+      },
+      requireAuth: true,
+    );
+  }
+  
+  // CREATE SUPPORT TICKET (AUTHENTICATED)
+  Future<Map<String, dynamic>> createSupportTicket({
+    required String category,
+    required String subject,
+    required String description,
+    List<String>? attachments,
+  }) async {
+    return await _makeRequest(
+      'POST',
+      '/support',
+      body: {
+        'category': category,
+        'subject': subject,
+        'description': description,
+        if (attachments != null) 'attachments': attachments,
+      },
+      requireAuth: true,
+    );
+  }
+  
+  // GET ALL STREAMS
+  Future<Map<String, dynamic>> getStreams({
+    String? game,
+    String? status,
+    bool? isOfficial,
+    int? page,
+    int? limit,
+  }) async {
+    final queryParams = <String, dynamic>{
+      if (game != null) 'game': game,
+      if (status != null) 'status': status,
+      if (isOfficial != null) 'is_official': isOfficial.toString(),
+      if (page != null) 'page': page,
+      if (limit != null) 'limit': limit,
+    };
+    
+    final queryString = Uri(queryParameters: queryParams).query;
+    final endpoint = queryString.isNotEmpty ? '/streams?$queryString' : '/streams';
+    
+    return await _makeRequest('GET', endpoint);
+  }
+  
+  // GET LEADERBOARD
+  Future<Map<String, dynamic>> getLeaderboard({
+    String? game,
+    String? metric,
+    String? timePeriod,
+  }) async {
+    final queryParams = <String, dynamic>{
+      if (game != null) 'game': game,
+      if (metric != null) 'metric': metric,
+      if (timePeriod != null) 'time_period': timePeriod,
+    };
+    
+    final queryString = Uri(queryParameters: queryParams).query;
+    final endpoint = queryString.isNotEmpty ? '/leaderboard?$queryString' : '/leaderboard';
+    
+    return await _makeRequest('GET', endpoint);
+  }
+}
+
+// Create a singleton instance
+final apiService = ApiService();</code></pre>
+            </div>
+
+            <!-- Step 3: Flutter Usage Examples -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">Step 3: Flutter Usage Examples</h3>
+                <p class="text-gray-700 mb-4">Example implementation:</p>
+                <pre><code>import 'package:flutter/material.dart';
+import 'services/api_service.dart';
+
+// Splash Screen - Initialize app on startup
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _initializeApp();
+  }
+
+  Future<void> _initializeApp() async {
+    try {
+      // Get initialization token from server
+      final response = await apiService.initializeApp();
+      
+      if (response['success']) {
+        print('✅ App initialized with token');
+        
+        // Navigate to home or login screen after splash
+        await Future.delayed(Duration(seconds: 2)); // Show splash for 2 seconds
+        
+        if (mounted) {
+          // Check if user is already logged in
+          final token = await apiService._getAuthToken();
+          
+          if (token != null) {
+            Navigator.pushReplacementNamed(context, '/home');
+          } else {
+            Navigator.pushReplacementNamed(context, '/login');
+          }
+        }
+      }
+    } catch (e) {
+      print('❌ Initialization failed: $e');
+      if (mounted) {
+        // Show error and retry or go to offline mode
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Connection Error'),
+            content: Text('Failed to connect to server. Please try again.'),
+            actions: [
+              TextButton(
+                onPressed: () => _initializeApp(),
+                child: Text('Retry'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('Cancel'),
+              ),
+            ],
+          ),
+        );
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.sports_esports, size: 100, color: Colors.purple),
+            SizedBox(height: 20),
+            Text(
+              'Gaming Tournament',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            CircularProgressIndicator(),
+            SizedBox(height: 10),
+            Text('Initializing...'),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _isLoading = false;
+
+  Future<void> _login() async {
+    setState(() => _isLoading = true);
+    
+    try {
+      final response = await apiService.login(
+        emailOrPhone: _emailController.text,
+        password: _passwordController.text,
+      );
+      
+      if (response['success']) {
+        // Navigate to home screen
+        Navigator.pushReplacementNamed(context, '/home');
+      }
+    } catch (e) {
+      // Show error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Login failed: $e')),
+      );
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: _emailController,
+              decoration: InputDecoration(labelText: 'Email or Phone'),
+            ),
+            SizedBox(height: 16),
+            TextField(
+              controller: _passwordController,
+              decoration: InputDecoration(labelText: 'Password'),
+              obscureText: true,
+            ),
+            SizedBox(height: 24),
+            ElevatedButton(
+              onPressed: _isLoading ? null : _login,
+              child: _isLoading 
+                ? CircularProgressIndicator() 
+                : Text('Login'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// Registration Example
+class RegistrationScreen extends StatefulWidget {
+  @override
+  _RegistrationScreenState createState() => _RegistrationScreenState();
+}
+
+class _RegistrationScreenState extends State<RegistrationScreen> {
+  final _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
+
+  Future<void> _register() async {
+    if (!_formKey.currentState!.validate()) return;
+    
+    setState(() => _isLoading = true);
+    
+    try {
+      final response = await apiService.register(
+        email: _emailController.text,
+        phoneNumber: _phoneController.text,
+        fullName: _nameController.text,
+        inGameName: _gameNameController.text,
+        primaryGame: _selectedGame,
+        password: _passwordController.text,
+      );
+      
+      if (response['success']) {
+        Navigator.pushReplacementNamed(context, '/home');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Registration failed: $e')),
+      );
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  // ... text controllers and form fields ...
+  // Include validation, dropdown for games, etc.
+}
+
+// Tournaments Example
+class TournamentsScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Tournaments')),
+      body: FutureBuilder<Map<String, dynamic>>(
+        future: apiService.getTournaments(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+          
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
+          
+          final tournaments = snapshot.data?['data'] ?? [];
+          
+          return ListView.builder(
+            itemCount: tournaments.length,
+            itemBuilder: (context, index) {
+              final tournament = tournaments[index];
+              return ListTile(
+                title: Text(tournament['name']),
+                subtitle: Text('Prize: \$${tournament['prize_pool']}'),
+                trailing: ElevatedButton(
+                  onPressed: () => _registerForTournament(context, tournament['id']),
+                  child: Text('Register'),
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+  
+  void _registerForTournament(BuildContext context, String tournamentId) async {
+    try {
+      final response = await apiService.registerForTournament(
+        tournamentId,
+        entryFeePaymentMethod: 'coins',
+      );
+      
+      if (response['success']) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Registered successfully!')),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Registration failed: $e')),
+      );
+    }
+  }
+}</code></pre>
+            </div>
+
+            <!-- Security Features -->
+            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-xl mb-6">
+                <h3 class="text-xl font-bold text-yellow-900 mb-2">🔒 Security Features</h3>
+                <ul class="list-disc list-inside text-yellow-800 space-y-2">
+                    <li><strong>Initialization Tokens:</strong> Random hash generated on app startup for enhanced security</li>
+                    <li><strong>Single-Use Tokens:</strong> Each init token is deleted after successful login/register</li>
+                    <li><strong>JWT Tokens:</strong> Automatically saved and sent with all authenticated requests</li>
+                    <li><strong>Device Fingerprint:</strong> Each device gets a unique hash for extra security</li>
+                    <li><strong>Token Auto-Save:</strong> Login/Register automatically saves tokens</li>
+                    <li><strong>Auto-Logout:</strong> Token cleared on logout</li>
+                    <li><strong>HTTPS Ready:</strong> Change baseUrl to use HTTPS in production</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <!-- Authentication Flow -->
+        <section id="auth" class="bg-white rounded-2xl shadow-xl p-8 mb-12 border border-purple-200">
+            <h2 class="text-3xl font-bold text-purple-900 mb-6 flex items-center">
+                <span class="mr-3">🔐</span> Authentication Flow
+            </h2>
+
+            <!-- App Initialization -->
+            <div class="mb-8 bg-purple-50 border-l-4 border-purple-600 p-6 rounded-r-xl">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">
+                    <span class="endpoint-badge badge-post">POST</span>
+                    <span class="ml-3">/auth/init</span>
+                    <span class="ml-2 text-sm text-purple-600">⚠️ REQUIRED FIRST</span>
+                </h3>
+                <p class="text-gray-700 mb-4">Call this endpoint on app startup (splash screen) to get secure initialization token:</p>
+                
+                <div class="mb-4">
+                    <h4 class="font-bold text-purple-900 mb-2">📋 cURL Example:</h4>
+                    <pre><code>curl -X POST http://localhost:3000/auth/init \
+  -H "Content-Type: application/json" \
+  -d "{}"</code></pre>
+                </div>
+                
+                <div class="mb-4">
+                    <h4 class="font-bold text-purple-900 mb-2">📱 Flutter Example:</h4>
+                    <pre><code>final response = await apiService.initializeApp();
+final initToken = response['data']['init_token'];</code></pre>
+                </div>
+                
+                <div class="mb-4">
+                    <h4 class="font-bold text-purple-900 mb-2">⚡ Response:</h4>
+                    <pre><code>{
+  "success": true,
+  "data": {
+    "init_token": "64-character-random-hash-here",
+    "expires_in": 3600,
+    "message": "Initialization token generated successfully"
+  }
+}</code></pre>
+                </div>
+                
+                <div class="bg-yellow-100 border border-yellow-400 rounded-lg p-4 mt-4">
+                    <strong>⚠️ IMPORTANT:</strong> Every login and register request MUST include the init_token. Without it, requests will be rejected!
+                    <br><br>
+                    <strong>💾 Storage:</strong> Init tokens are stored in Supabase `init_tokens` table with device fingerprint and IP tracking.
+                </div>
+            </div>
+
+            <!-- Registration -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">
+                    <span class="endpoint-badge badge-post">POST</span>
+                    <span class="ml-3">/auth/register</span>
+                </h3>
+                <p class="text-gray-700 mb-4">Register a new user account:</p>
+                
+                <div class="mb-4">
+                    <h4 class="font-bold text-purple-900 mb-2">📋 cURL Example:</h4>
+                    <pre><code>curl -X POST http://localhost:3000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "player@gaming.com",
+    "phone_number": "+911234567890",
+    "full_name": "John Doe",
+    "in_game_name": "ProGamer99",
+    "primary_game": "BGMI",
+    "password": "SecurePass123",
+    "referral_code": "REF123",
+    "init_token": "YOUR_INIT_TOKEN_HERE"
+  }'</code></pre>
+                </div>
+                
+                <div class="mb-4">
+                    <h4 class="font-bold text-purple-900 mb-2">⚡ Response:</h4>
+                    <pre><code>{
+  "success": true,
+  "data": {
+    "user": {
+      "id": "uuid",
+      "email": "player@gaming.com",
+      "in_game_name": "ProGamer99",
+      "coins_balance": 0,
+      "cash_balance": 0
+    },
+    "token": "jwt_token_here"
+  }
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- Login -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">
+                    <span class="endpoint-badge badge-post">POST</span>
+                    <span class="ml-3">/auth/login</span>
+                </h3>
+                <p class="text-gray-700 mb-4">Login with email or phone:</p>
+                
+                <div class="mb-4">
+                    <h4 class="font-bold text-purple-900 mb-2">📋 cURL Example:</h4>
+                    <pre><code>curl -X POST http://localhost:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email_or_phone": "player@gaming.com",
+    "password": "SecurePass123",
+    "init_token": "YOUR_INIT_TOKEN_HERE"
+  }'</code></pre>
+                </div>
+                
+                <div class="mb-4">
+                    <h4 class="font-bold text-purple-900 mb-2">⚡ Response:</h4>
+                    <pre><code>{
+  "success": true,
+  "data": {
+    "user": { ... },
+    "token": "jwt_token_here"
+  }
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- Authenticated Requests -->
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl">
+                <h3 class="text-xl font-bold text-blue-900 mb-3">Using Authenticated Endpoints</h3>
+                <p class="text-blue-800 mb-3">After login, include the token in all authenticated requests:</p>
+                <pre><code>// Header automatically added by ApiService
+Authorization: Bearer jwt_token_here
+X-Device-Fingerprint: device_hash_here
+
+// Example: Get user profile
+GET /users/me</code></pre>
+            </div>
+
+        </section>
+
+        <!-- Admin Panel -->
+        <section id="admin" class="bg-white rounded-2xl shadow-xl p-8 mb-12 border border-purple-200">
+            <h2 class="text-3xl font-bold text-purple-900 mb-6 flex items-center">
+                <span class="mr-3">👑</span> Admin Panel Guide
+            </h2>
+
+            <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl mb-6">
+                <h3 class="text-xl font-bold text-purple-900 mb-3">Creating Admin Interface</h3>
+                <p class="text-gray-700">You can build your admin panel using React, Vue, Angular, or vanilla HTML/JS.</p>
+            </div>
+
+            <!-- Admin Login -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">
+                    <span class="endpoint-badge badge-post">POST</span>
+                    <span class="ml-3">/admin/auth/login</span>
+                </h3>
+                <p class="text-gray-700 mb-4">Admin login (separate from user auth):</p>
+                <pre><code>// JavaScript Example
+async function adminLogin(email, password) {
+  const response = await fetch('http://localhost:3000/admin/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password })
+  });
+  
+  const data = await response.json();
+  
+  if (data.success) {
+    // Save admin token
+    localStorage.setItem('admin_token', data.data.token);
+    window.location.href = '/admin/dashboard';
+  } else {
+    alert(data.error.message);
+  }
+}
+
+// Usage
+adminLogin('admin@example.com', 'admin123');</code></pre>
+            </div>
+
+            <!-- Create Tournament -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">
+                    <span class="endpoint-badge badge-post">POST</span>
+                    <span class="ml-3">/admin/tournaments</span>
+                </h3>
+                <p class="text-gray-700 mb-4">Create a new tournament:</p>
+                <pre><code>async function createTournament(tournamentData) {
+  const token = localStorage.getItem('admin_token');
+  
+  const response = await fetch('http://localhost:3000/admin/tournaments', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(tournamentData)
+  });
+  
+  return await response.json();
+}
+
+// Usage
+createTournament({
+  "name": "Summer Gaming Championship",
+  "description": "Biggest tournament of the year",
+  "game": "BGMI",
+  "organizer": "Gaming Arena",
+  "banner_image": "https://example.com/banner.jpg",
+  "game_icon": "https://example.com/icon.jpg",
+  "prize_pool": 50000,
+  "entry_fee": 100,
+  "entry_fee_type": "paid",
+  "team_size": "Squads",
+  "max_participants": 100,
+  "start_date": "2024-07-01T10:00:00Z",
+  "end_date": "2024-07-01T18:00:00Z",
+  "registration_deadline": "2024-06-30T23:59:59Z",
+  "rules": "No cheating allowed..."
+});</code></pre>
+            </div>
+
+            <!-- Manage Users -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">
+                    <span class="endpoint-badge badge-get">GET</span>
+                    <span class="ml-3">/admin/users</span>
+                </h3>
+                <p class="text-gray-700 mb-4">List all users:</p>
+                <pre><code>async function getUsers(page = 1, limit = 20) {
+  const token = localStorage.getItem('admin_token');
+  
+  const response = await fetch(
+    `http://localhost:3000/admin/users?page=${page}&limit=${limit}`,
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+  );
+  
+  return await response.json();
+}
+
+// Display in HTML table
+async function displayUsers() {
+  const data = await getUsers();
+  const usersTable = document.getElementById('users-table');
+  
+  data.data.forEach(user => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${user.full_name}</td>
+      <td>${user.email}</td>
+      <td>${user.in_game_name}</td>
+      <td>${user.coins_balance}</td>
+      <td>
+        <button onclick="suspendUser('${user.id}')">Suspend</button>
+      </td>
+    `;
+    usersTable.appendChild(row);
+  });
+}</code></pre>
+            </div>
+
+            <!-- Suspend User -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">
+                    <span class="endpoint-badge badge-post">POST</span>
+                    <span class="ml-3">/admin/users/{id}/suspend</span>
+                </h3>
+                <pre><code>async function suspendUser(userId) {
+  const token = localStorage.getItem('admin_token');
+  
+  const response = await fetch(
+    `http://localhost:3000/admin/users/${userId}/suspend`,
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+  );
+  
+  const result = await response.json();
+  if (result.success) {
+    alert('User suspended successfully');
+    displayUsers(); // Refresh list
+  }
+}</code></pre>
+            </div>
+
+            <!-- Analytics -->
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">
+                    <span class="endpoint-badge badge-get">GET</span>
+                    <span class="ml-3">/admin/analytics/dashboard</span>
+                </h3>
+                <pre><code>async function getDashboardStats() {
+  const token = localStorage.getItem('admin_token');
+  
+  const response = await fetch(
+    'http://localhost:3000/admin/analytics/dashboard',
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+  );
+  
+  const data = await response.json();
+  
+  // Display stats
+  document.getElementById('total-users').textContent = data.data.total_users;
+  document.getElementById('total-tournaments').textContent = data.data.total_tournaments;
+  document.getElementById('total-revenue').textContent = data.data.total_revenue;
+}</code></pre>
+            </div>
+
+            <!-- Admin HTML Example -->
+            <div class="bg-gray-50 p-6 rounded-xl">
+                <h4 class="text-lg font-bold mb-3">Complete Admin Dashboard HTML Example:</h4>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Admin Dashboard&lt;/title&gt;
+  &lt;style&gt;
+    body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .card { background: white; padding: 20px; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    button { padding: 10px 20px; background: #9333ea; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #7c3aed; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #9333ea; color: white; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;h1&gt;Gaming Tournament Admin Panel&lt;/h1&gt;
+    
+    &lt;!-- Stats Dashboard --&gt;
+    &lt;div class="card"&gt;
+      &lt;h2&gt;Dashboard Stats&lt;/h2&gt;
+      &lt;div id="stats"&gt;Loading...&lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Users Table --&gt;
+    &lt;div class="card"&gt;
+      &lt;h2&gt;Users Management&lt;/h2&gt;
+      &lt;table id="users-table"&gt;
+        &lt;thead&gt;
+          &lt;tr&gt;
+            &lt;th&gt;Name&lt;/th&gt;
+            &lt;th&gt;Email&lt;/th&gt;
+            &lt;th&gt;Game Name&lt;/th&gt;
+            &lt;th&gt;Balance&lt;/th&gt;
+            &lt;th&gt;Actions&lt;/th&gt;
+          &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;&lt;/tbody&gt;
+      &lt;/table&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Create Tournament Form --&gt;
+    &lt;div class="card"&gt;
+      &lt;h2&gt;Create Tournament&lt;/h2&gt;
+      &lt;form id="tournament-form"&gt;
+        &lt;input type="text" placeholder="Tournament Name" required /&gt;
+        &lt;input type="text" placeholder="Game" required /&gt;
+        &lt;input type="number" placeholder="Prize Pool" required /&gt;
+        &lt;button type="submit"&gt;Create Tournament&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  
+  &lt;script&gt;
+    // Check if logged in
+    if (!localStorage.getItem('admin_token')) {
+      window.location.href = '/admin/login.html';
+    }
+    
+    // Load dashboard on page load
+    window.onload = () => {
+      getDashboardStats();
+      displayUsers();
+      
+      document.getElementById('tournament-form').onsubmit = async (e) => {
+        e.preventDefault();
+        // Create tournament logic here
+        alert('Tournament created!');
+      };
+    };
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+        </section>
+
+        <!-- All Endpoints -->
+        <section id="endpoints" class="bg-white rounded-2xl shadow-xl p-8 mb-12 border border-purple-200">
+            <h2 class="text-3xl font-bold text-purple-900 mb-6 flex items-center">
+                <span class="mr-3">📚</span> Complete Endpoint List
+            </h2>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">User Endpoints (43)</h3>
+                
+                <div class="space-y-4">
+                    <div class="border-l-4 border-purple-600 bg-purple-100 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-post">POST</span>
+                            <code class="ml-3">/auth/init</code>
+                            <span class="ml-2 text-xs bg-yellow-500 text-white px-2 py-1 rounded">REQUIRED FIRST</span>
+                        </div>
+                        <p class="text-sm text-gray-700">Get initialization token (call on app startup)</p>
+                    </div>
+
+                    <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-post">POST</span>
+                            <code class="ml-3">/auth/register</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Register new user account</p>
+                    </div>
+
+                    <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-post">POST</span>
+                            <code class="ml-3">/auth/login</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Login with email or phone</p>
+                    </div>
+
+                    <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-post">POST</span>
+                            <code class="ml-3">/auth/logout</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Logout user (requires auth)</p>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-get">GET</span>
+                            <code class="ml-3">/tournaments</code>
+                        </div>
+                        <p class="text-sm text-gray-700">List all tournaments with filters</p>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-get">GET</span>
+                            <code class="ml-3">/tournaments/{id}</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Get tournament details</p>
+                    </div>
+
+                    <div class="border-l-4 border-orange-500 bg-orange-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-post">POST</span>
+                            <code class="ml-3">/tournaments/{id}/register</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Register for tournament (requires auth)</p>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-get">GET</span>
+                            <code class="ml-3">/wallet/balance</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Get wallet balance (requires auth)</p>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-get">GET</span>
+                            <code class="ml-3">/wallet/transactions</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Get transaction history (requires auth)</p>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-get">GET</span>
+                            <code class="ml-3">/rewards/store</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Get rewards catalog</p>
+                    </div>
+
+                    <div class="border-l-4 border-orange-500 bg-orange-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-post">POST</span>
+                            <code class="ml-3">/rewards/{id}/redeem</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Redeem a reward (requires auth)</p>
+                    </div>
+
+                    <div class="border-l-4 border-purple-500 bg-purple-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-ws">WS</span>
+                            <code class="ml-3">/ws/streams/{id}</code>
+                        </div>
+                        <p class="text-sm text-gray-700">WebSocket for live stream updates</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-purple-100 rounded-lg">
+                    <p class="text-sm text-purple-800">
+                        <strong>Note:</strong> See <code>API_ENDPOINTS.json</code> for complete documentation of all 42 user endpoints including Teams, Support, Notifications, and more.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">Admin Endpoints (68)</h3>
+                
+                <div class="space-y-4">
+                    <div class="border-l-4 border-green-500 bg-green-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-post">POST</span>
+                            <code class="ml-3">/admin/auth/login</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Admin login</p>
+                    </div>
+
+                    <div class="border-l-4 border-orange-500 bg-orange-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-post">POST</span>
+                            <code class="ml-3">/admin/tournaments</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Create tournament (requires admin auth)</p>
+                    </div>
+
+                    <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-put">PUT</span>
+                            <code class="ml-3">/admin/tournaments/{id}</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Update tournament</p>
+                    </div>
+
+                    <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-delete">DELETE</span>
+                            <code class="ml-3">/admin/tournaments/{id}</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Delete tournament</p>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-get">GET</span>
+                            <code class="ml-3">/admin/users</code>
+                        </div>
+                        <p class="text-sm text-gray-700">List all users</p>
+                    </div>
+
+                    <div class="border-l-4 border-orange-500 bg-orange-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-post">POST</span>
+                            <code class="ml-3">/admin/users/{id}/suspend</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Suspend user account</p>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-get">GET</span>
+                            <code class="ml-3">/admin/analytics/dashboard</code>
+                        </div>
+                        <p class="text-sm text-gray-700">Get dashboard statistics</p>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 bg-blue-50 p-4 rounded">
+                        <div class="flex items-center mb-2">
+                            <span class="endpoint-badge badge-get">GET</span>
+                            <code class="ml-3">/admin/transactions</code>
+                        </div>
+                        <p class="text-sm text-gray-700">List all transactions</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-purple-100 rounded-lg">
+                    <p class="text-sm text-purple-800">
+                        <strong>Note:</strong> See <code>API_ENDPOINTS.json</code> for all 68 admin endpoints including KYC management, Support tickets, Rewards, and more.
+                    </p>
+                </div>
+            </div>
+
+            <!-- API Info Endpoint -->
+            <div class="bg-gradient-to-r from-purple-100 to-pink-100 p-6 rounded-xl">
+                <h3 class="text-xl font-bold text-purple-900 mb-3">📋 Complete API Documentation</h3>
+                <p class="text-purple-800 mb-4">Get the complete list of all endpoints programmatically:</p>
+                <pre><code>GET /api-info
+
+// Returns full documentation including:
+// - All 114 endpoints with methods, paths, params
+// - Request/response examples
+// - Authentication requirements
+// - Error codes</code></pre>
+            </div>
+
+        </section>
+
+        <!-- Response Format -->
+        <section class="bg-white rounded-2xl shadow-xl p-8 mb-12 border border-purple-200">
+            <h2 class="text-3xl font-bold text-purple-900 mb-6 flex items-center">
+                <span class="mr-3">📤</span> Response Format
+            </h2>
+
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xl font-bold text-purple-800 mb-3">Success Response</h3>
+                    <pre><code>{
+  "success": true,
+  "data": {
+    // Your data here
+  },
+  "message": "Optional success message"
+}</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-purple-800 mb-3">Error Response</h3>
+                    <pre><code>{
+  "success": false,
+  "error": {
+    "code": "ERROR_CODE",
+    "message": "Human-readable error message"
+  }
+}</code></pre>
+                </div>
+
+                <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-xl">
+                    <h3 class="text-xl font-bold text-red-900 mb-3">Common Error Codes</h3>
+                    <ul class="list-disc list-inside text-red-800 space-y-1">
+                        <li><strong>UNAUTHORIZED:</strong> Missing or invalid authentication token</li>
+                        <li><strong>FORBIDDEN:</strong> Insufficient permissions</li>
+                        <li><strong>NOT_FOUND:</strong> Resource doesn't exist</li>
+                        <li><strong>VALIDATION_ERROR:</strong> Invalid input data</li>
+                        <li><strong>DATABASE_ERROR:</strong> Server-side database issue</li>
+                        <li><strong>RATE_LIMIT_EXCEEDED:</strong> Too many requests</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Quick Reference -->
+        <section class="bg-gradient-to-br from-purple-600 to-purple-800 text-white rounded-2xl shadow-2xl p-8 mb-12">
+            <h2 class="text-3xl font-bold mb-6">⚡ Quick Reference</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-3">Authentication</h3>
+                    <ul class="space-y-2 text-purple-100">
+                        <li>• User tokens expire in 30 minutes</li>
+                        <li>• Admin tokens expire in 60 minutes</li>
+                        <li>• Include token in Authorization header</li>
+                        <li>• Device fingerprint for extra security</li>
+                    </ul>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-3">Rate Limiting</h3>
+                    <ul class="space-y-2 text-purple-100">
+                        <li>• 100 requests per 15 minutes</li>
+                        <li>• Per IP address</li>
+                        <li>• All endpoints protected</li>
+                    </ul>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-3">Pagination</h3>
+                    <ul class="space-y-2 text-purple-100">
+                        <li>• Default page size: 20</li>
+                        <li>• Max page size: 100</li>
+                        <li>• Use page and limit params</li>
+                    </ul>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-3">Games Supported</h3>
+                    <ul class="space-y-2 text-purple-100">
+                        <li>• BGMI</li>
+                        <li>• Valorant</li>
+                        <li>• Free Fire</li>
+                        <li>• COD Mobile</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Token Storage in Supabase -->
+        <section class="bg-white rounded-2xl shadow-xl p-8 mb-12 border border-purple-200">
+            <h2 class="text-3xl font-bold text-purple-900 mb-6 flex items-center">
+                <span class="mr-3">💾</span> Token Storage in Supabase
+            </h2>
+            
+            <div class="bg-green-50 border-l-4 border-green-600 p-6 rounded-r-xl mb-6">
+                <h3 class="text-xl font-bold text-green-900 mb-3">✅ YES! Init Tokens Are Stored in Supabase</h3>
+                <p class="text-green-800">All initialization tokens are stored in the <code>init_tokens</code> table with tracking information.</p>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">Database Table: init_tokens</h3>
+                <pre><code>CREATE TABLE IF NOT EXISTS init_tokens (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  token VARCHAR(64) UNIQUE NOT NULL,
+  device_fingerprint VARCHAR(64),
+  ip_address VARCHAR(50),
+  expires_at TIMESTAMP WITH TIME ZONE NOT NULL,
+  used BOOLEAN DEFAULT false,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);</code></pre>
+            </div>
+
+            <div class="mb-6">
+                <h3 class="text-2xl font-bold text-purple-800 mb-4">📊 What's Stored</h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li><strong>Token:</strong> The 64-character random hash</li>
+                    <li><strong>Device Fingerprint:</strong> Hash of device ID + model + manufacturer</li>
+                    <li><strong>IP Address:</strong> Client IP for tracking</li>
+                    <li><strong>Expires At:</strong> Timestamp when token becomes invalid</li>
+                    <li><strong>Used:</strong> Boolean flag (true after login/register)</li>
+                    <li><strong>Created At:</strong> When token was generated</li>
+                </ul>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-xl">
+                <h3 class="text-xl font-bold text-blue-900 mb-3">🔍 Query Init Tokens</h3>
+                <p class="text-blue-800 mb-3">View all init tokens in Supabase SQL Editor:</p>
+                <pre><code>-- View all tokens
+SELECT * FROM init_tokens ORDER BY created_at DESC LIMIT 20;
+
+-- View active tokens
+SELECT * FROM init_tokens WHERE used = false AND expires_at > NOW();
+
+-- View used tokens
+SELECT * FROM init_tokens WHERE used = true;
+
+-- View tokens by IP
+SELECT ip_address, COUNT(*) as count 
+FROM init_tokens 
+GROUP BY ip_address;</code></pre>
+            </div>
+        </section>
+
+        <!-- Support -->
+        <section class="bg-white rounded-2xl shadow-xl p-8 mb-12 border border-purple-200">
+            <h2 class="text-3xl font-bold text-purple-900 mb-6 flex items-center">
+                <span class="mr-3">💬</span> Need Help?
+            </h2>
+            <div class="bg-purple-50 p-6 rounded-xl">
+                <p class="text-purple-900 mb-4">
+                    <strong>Server Status:</strong> <code>GET /health</code>
+                </p>
+                <p class="text-purple-900 mb-4">
+                    <strong>Complete Docs:</strong> <code>GET /api-info</code>
+                </p>
+                <p class="text-purple-900">
+                    <strong>API Endpoints File:</strong> Open <code>API_ENDPOINTS.json</code> for the complete list with all parameters, examples, and response formats.
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-purple-900 to-purple-700 text-white py-8 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-2xl font-bold mb-2">🎮 Gaming Tournament Platform API</p>
+            <p class="text-purple-200">Complete Documentation - v1.0.0</p>
+            <p class="text-purple-300 mt-4 text-sm">115 Endpoints | Production Ready | Secure & Scalable</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
+
